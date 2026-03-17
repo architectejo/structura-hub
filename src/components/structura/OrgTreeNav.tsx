@@ -73,12 +73,10 @@ function TreeNode({ node, depth = 0 }: { node: OrgNode; depth?: number }) {
 }
 
 export function OrgTreeNav() {
-  const { orgTreeData } = { orgTreeData: require('@/data/mock-data').orgTree as OrgNode };
-
   return (
     <nav className="p-3 space-y-1">
       <p className="metadata-label px-2 mb-2">Organisation</p>
-      <TreeNode node={orgTreeData} />
+      <TreeNode node={orgTree} />
     </nav>
   );
 }
