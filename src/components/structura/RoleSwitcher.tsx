@@ -1,13 +1,14 @@
 import { useStructura } from '@/contexts/StructuraContext';
 import { UserRole } from '@/types/structura';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Shield, UserCheck, CheckSquare, User } from 'lucide-react';
+import { Shield, UserCheck, CheckSquare, User, PenTool, Eye } from 'lucide-react';
 
 const roles: { value: UserRole; label: string; icon: typeof Shield }[] = [
   { value: 'super_utilisateur', label: 'Super Admin', icon: Shield },
   { value: 'validateur', label: 'Validateur', icon: CheckSquare },
   { value: 'verificateur', label: 'Vérificateur', icon: UserCheck },
-  { value: 'utilisateur', label: 'Utilisateur', icon: User },
+  { value: 'encodeur', label: 'Encodeur', icon: PenTool },
+  { value: 'visiteur', label: 'Visiteur', icon: Eye },
 ];
 
 export function RoleSwitcher() {

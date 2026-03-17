@@ -1,4 +1,4 @@
-import { OrgNode, Document, Notification } from '@/types/structura';
+import { OrgNode, Document, Notification, ApiKey } from '@/types/structura';
 
 export const orgTree: OrgNode = {
   id: 'inst-1',
@@ -59,6 +59,7 @@ export const mockDocuments: Document[] = [
     type_fichier: 'PDF',
     date_creation: '2024-03-15',
     is_private: false,
+    is_public_api: false,
     created_by: 'user-1',
     is_deleted: false,
   },
@@ -73,6 +74,7 @@ export const mockDocuments: Document[] = [
     type_fichier: 'DOCX',
     date_creation: '2024-03-10',
     is_private: false,
+    is_public_api: false,
     created_by: 'user-2',
     is_deleted: false,
   },
@@ -87,6 +89,7 @@ export const mockDocuments: Document[] = [
     type_fichier: 'PDF',
     date_creation: '2024-02-28',
     is_private: true,
+    is_public_api: true,
     created_by: 'admin-1',
     is_deleted: false,
   },
@@ -102,6 +105,7 @@ export const mockDocuments: Document[] = [
     date_creation: '2024-03-01',
     commentaire: 'Signatures manquantes sur les pages 3 et 7.',
     is_private: false,
+    is_public_api: false,
     created_by: 'user-3',
     is_deleted: false,
   },
@@ -116,6 +120,7 @@ export const mockDocuments: Document[] = [
     type_fichier: 'XLSX',
     date_creation: '2024-03-12',
     is_private: false,
+    is_public_api: false,
     created_by: 'user-1',
     is_deleted: false,
   },
@@ -130,6 +135,7 @@ export const mockDocuments: Document[] = [
     type_fichier: 'PDF',
     date_creation: '2024-01-20',
     is_private: false,
+    is_public_api: false,
     created_by: 'user-2',
     is_deleted: true,
     deleted_at: '2024-03-10',
@@ -145,6 +151,7 @@ export const mockDocuments: Document[] = [
     type_fichier: 'PDF',
     date_creation: '2024-02-15',
     is_private: false,
+    is_public_api: true,
     created_by: 'user-1',
     is_deleted: true,
     deleted_at: '2024-03-05',
@@ -157,3 +164,11 @@ export const mockNotifications: Notification[] = [
   { id: 'n3', type: 'workflow', message: 'DOC-2024-004 a été rejeté par le validateur.', timestamp: '2024-03-14T16:45:00', read: true },
   { id: 'n4', type: 'system', message: 'Mise à jour système planifiée pour le 20/03.', timestamp: '2024-03-14T08:00:00', read: true },
 ];
+
+export const mockApiKeys: ApiKey[] = [
+  { id: 'ak-1', name: 'Portail Citoyen', key: 'sk_live_structura_7f8a9b2c...', created_at: '2024-02-01', is_active: true },
+  { id: 'ak-2', name: 'Application Mobile', key: 'sk_live_structura_3d4e5f6g...', created_at: '2024-01-15', is_active: true },
+  { id: 'ak-3', name: 'Test Développement', key: 'sk_test_structura_1a2b3c4d...', created_at: '2024-03-01', is_active: false },
+];
+
+export const SUBSCRIPTION_EXPIRY = '2025-06-30';

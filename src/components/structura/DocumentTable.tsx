@@ -1,26 +1,25 @@
-import { Document, DocumentStatus } from '@/types/structura';
+import { Document } from '@/types/structura';
 import { StatusBadge } from './StatusBadge';
+import { ShareModal } from './ShareModal';
 import { useStructura } from '@/contexts/StructuraContext';
-import { Lock, Share2, Eye } from 'lucide-react';
+import { Lock, Eye, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Switch } from '@/components/ui/switch';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 interface Props {
   documents: Document[];
   onVerify?: (doc: Document) => void;
   onValidate?: (doc: Document) => void;
   onReject?: (doc: Document) => void;
+  onToggleApi?: (doc: Document) => void;
 }
 
-export function DocumentTable({ documents, onVerify, onValidate, onReject }: Props) {
+export function DocumentTable({ documents, onVerify, onValidate, onReject, onToggleApi }: Props) {
   const { currentRole, isReadOnly } = useStructura();
 
   return (
@@ -51,6 +50,7 @@ export function DocumentTable({ documents, onVerify, onValidate, onReject }: Pro
                 <TableCell className="text-sm font-medium">
                   <div className="flex items-center gap-2">
                     {doc.is_private && <Lock className="h-3.5 w-3.5 text-muted-foreground" />}
+                    {doc.is_public_api && <Globe className="h-3.5 w-3.5 text-status-verified" />}
                     {doc.name}
                   </div>
                 </TableCell>
@@ -64,9 +64,20 @@ export function DocumentTable({ documents, onVerify, onValidate, onReject }: Pro
                       <Eye className="h-3.5 w-3.5" />
                     </Button>
                     {doc.is_private && currentRole === 'super_utilisateur' && (
-                      <Button variant="ghost" size="sm" className="nav-action h-7 px-2 text-xs">
-                        <Share2 className="h-3.5 w-3.5" />
-                      </Button>
+                      <ShareModal
+                        documentName={doc.name}
+                        onShare={() => toast.success(`Document "${doc.name}" partagé.`)}
+                      />
+                    )}
+                    {doc.status === 'valide' && currentRole === 'super_utilisateur' && onToggleApi && (
+                      <div className="flex items-center gap-1" title="Accessible via API">
+                        <Globe className="h-3 w-3 text-muted-foreground" />
+                        <Switch
+                          checked={doc.is_public_api}
+                          onCheckedChange={() => onToggleApi(doc)}
+                          className="scale-75"
+                        />
+                      </div>
                     )}
                     {currentRole === 'verificateur' && doc.status === 'brouillon' && onVerify && (
                       <Button variant="outline" size="sm" className="h-7 px-2 text-xs" onClick={() => onVerify(doc)} disabled={isReadOnly}>

@@ -7,6 +7,7 @@ import { DocumentDashboard } from '@/components/structura/DocumentDashboard';
 import { TrashView } from '@/components/structura/TrashView';
 import { AdminView } from '@/components/structura/AdminView';
 import { AuditView } from '@/components/structura/AuditView';
+import { ApiGatewayView } from '@/components/structura/ApiGatewayView';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState('documents');
@@ -21,6 +22,7 @@ function AppContent() {
             {currentView === 'documents' && <DocumentDashboard />}
             {currentView === 'corbeille' && <TrashView />}
             {currentView === 'administration' && <AdminView />}
+            {currentView === 'api-gateway' && <ApiGatewayView />}
             {currentView === 'audit' && <AuditView />}
           </main>
         </div>

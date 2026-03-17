@@ -2,6 +2,7 @@ import { useStructura } from '@/contexts/StructuraContext';
 import { ModeBadge } from './ModeBadge';
 import { NotificationCenter } from './NotificationCenter';
 import { RoleSwitcher } from './RoleSwitcher';
+import { SubscriptionBadge } from './SubscriptionBadge';
 import { ChevronRight } from 'lucide-react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 
@@ -25,6 +26,7 @@ export function AppHeader() {
       </div>
 
       <div className="flex items-center gap-3 shrink-0">
+        <SubscriptionBadge />
         <RoleSwitcher />
         <ModeBadge />
         <NotificationCenter />

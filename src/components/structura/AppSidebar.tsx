@@ -1,16 +1,10 @@
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+  Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
+  SidebarMenu, SidebarMenuButton, SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { useStructura } from '@/contexts/StructuraContext';
 import { OrgTreeNav } from './OrgTreeNav';
-import { FileText, Trash2, Shield, Activity } from 'lucide-react';
+import { FileText, Trash2, Shield, Activity, Key } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -23,11 +17,12 @@ export function AppSidebar({ currentView, onViewChange }: Props) {
 
   const mainItems = [
     { id: 'documents', label: 'Documents', icon: FileText },
-    { id: 'corbeille', label: 'Corbeille', icon: Trash2 },
+    ...(currentRole !== 'visiteur' ? [{ id: 'corbeille', label: 'Corbeille', icon: Trash2 }] : []),
   ];
 
   const adminItems = [
     { id: 'administration', label: 'Administration', icon: Shield },
+    { id: 'api-gateway', label: 'API Gateway', icon: Key },
     { id: 'audit', label: 'Audit', icon: Activity },
   ];
 
