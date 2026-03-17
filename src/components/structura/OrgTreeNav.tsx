@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { OrgNode } from '@/types/structura';
 import { useStructura } from '@/contexts/StructuraContext';
+import { orgTree } from '@/data/mock-data';
 import { cn } from '@/lib/utils';
 import { Building2, FolderOpen, Folder, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
