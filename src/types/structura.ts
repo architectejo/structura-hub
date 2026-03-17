@@ -1,6 +1,6 @@
 export type DocumentStatus = 'brouillon' | 'verifie' | 'valide' | 'rejete';
 export type AppMode = 'local' | 'online';
-export type UserRole = 'super_utilisateur' | 'validateur' | 'verificateur' | 'utilisateur';
+export type UserRole = 'super_utilisateur' | 'validateur' | 'verificateur' | 'encodeur' | 'visiteur';
 
 export interface OrgNode {
   id: string;
@@ -21,6 +21,7 @@ export interface Document {
   date_creation: string;
   commentaire?: string;
   is_private: boolean;
+  is_public_api: boolean;
   created_by: string;
   is_deleted: boolean;
   deleted_at?: string;
@@ -32,4 +33,12 @@ export interface Notification {
   message: string;
   timestamp: string;
   read: boolean;
+}
+
+export interface ApiKey {
+  id: string;
+  name: string;
+  key: string;
+  created_at: string;
+  is_active: boolean;
 }
